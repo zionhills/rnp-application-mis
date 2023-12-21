@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>home</title>
+    <link rel="icon" href="image/logo1.png" type="image/x-icon " />
+    <link rel="icon" type="image/x-icon" href="/image/logo1.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .header {
+        min-height: 100vh;
+        width: 100%;
+        background-image: url("/image/homePic.png");
+        background-position: center;
+        background-size: cover;
+        position: relative;
+      }
+
+      nav {
+        display: flex;
+        padding: 2% 6%;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #00226b;
+        height: 60px;
+        /* #1AA7EC */
+      }
+
+      nav img {
+        width: 130px;
+        border-radius: 300%;
+        margin-top: 10px;
+      }
+
+      .nav-links {
+        flex: 1;
+        text-align: right;
+      }
+
+      .nav-links ul li {
+        list-style: none;
+        display: inline-block;
+        padding: 8px 12px;
+        position: relative;
+      }
+
+      .nav-links ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 13px;
+      }
+
+      .nav-links ul li::after {
+        content: "";
+        width: 0%;
+        height: 2px;
+        background: #ffd700;
+        display: block;
+        margin: auto;
+        transition: 0.5s;
+      }
+
+      .nav-links ul li:hover::after {
+        width: 100%;
+      }
+
+      nav .fa {
+        display: none;
+      }
+
+      @media (max-width: 700px) {
+        .text-box h1 {
+          font-size: 20px;
+        }
+
+        .nav-links ul li {
+          display: block;
+        }
+
+        .nav-links {
+          position: absolute;
+          background: #f44336;
+          height: 100vh;
+          width: 200px;
+          top: 0;
+          right: -200px;
+          text-align: left;
+          z-index: 2;
+          transition: 0.5s;
+        }
+        nav .fa {
+          display: block;
+          color: #fff;
+          margin: 10px;
+          font-size: 22px;
+          cursor: pointer;
+        }
+
+        .nav-links ul {
+          padding: 30px;
+        }
+      }
+
+      .container {
+        max-width: 350px;
+        height: 500px;
+        background: #001f5d;
+        background: #87ceeb;
+        border-radius: 40px;
+        padding: 25px 35px;
+        border: 5px solid rgb(255, 255, 255);
+        box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 30px -20px;
+        margin: 20px;
+      }
+
+      .heading {
+        text-align: center;
+        font-weight: 900;
+        font-size: 30px;
+        color: #001f5d;
+      }
+
+      .form {
+        margin-top: 80px;
+        text-align: center;
+      }
+
+      .form .input {
+        width: 100%;
+        background: white;
+        border: none;
+        padding: 20px 20px;
+        border-radius: 20px;
+        margin-top: 20px;
+        margin-left: -15px;
+
+        box-shadow: #cff0ff 0px 10px 10px -5px;
+        border-inline: 2px solid transparent;
+      }
+
+      .form .input::-moz-placeholder {
+        color: rgb(170, 170, 170);
+      }
+
+      .form .input::placeholder {
+        color: rgb(170, 170, 170);
+      }
+
+      .form .input:focus {
+        outline: none;
+        border-inline: 2px solid #12b1d1;
+      }
+
+      .form .forgot-password {
+        display: block;
+        margin-top: 10px;
+        margin-left: 10px;
+      }
+
+      .form .forgot-password a {
+        font-size: 15px;
+        color: #001f5d;
+        text-decoration: none;
+      }
+
+      .form .login-button {
+        display: block;
+        width: 100%;
+        font-weight: bold;
+        background: #001f5d;
+        color: white;
+        padding-block: 15px;
+        margin: 20px auto;
+        border-radius: 20px;
+        box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 20px 10px -15px;
+        border: none;
+        transition: all 0.2s ease-in-out;
+      }
+      .login-button:hover {
+        color: #ffd700;
+      }
+      .form .login-button:hover {
+        transform: scale(1.03);
+        box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 23px 10px -20px;
+      }
+
+      .form .login-button:active {
+        transform: scale(0.95);
+        box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 15px 10px -10px;
+      }
+
+      .social-account-container {
+        margin-top: 25px;
+      }
+
+      .social-account-container .title {
+        display: block;
+        text-align: center;
+        font-size: 10px;
+        color: #001f5d;
+      }
+
+      .social-account-container .social-accounts {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 5px;
+      }
+
+      .social-account-container .social-accounts .social-button {
+        background: linear-gradient(
+          45deg,
+          rgb(0, 0, 0) 0%,
+          rgb(112, 112, 112) 100%
+        );
+        border: 5px solid white;
+        padding: 5px;
+        border-radius: 50%;
+        width: 40px;
+        aspect-ratio: 1;
+        display: grid;
+        place-content: center;
+        box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 12px 10px -8px;
+        transition: all 0.2s ease-in-out;
+      }
+
+      .social-account-container .social-accounts .social-button .svg {
+        fill: white;
+        margin: auto;
+      }
+
+      .social-account-container .social-accounts .social-button:hover {
+        transform: scale(1.2);
+      }
+
+      .social-account-container .social-accounts .social-button:active {
+        transform: scale(0.9);
+      }
+
+      .agreement {
+        display: block;
+        text-align: center;
+        margin-top: 15px;
+      }
+
+      .agreement a {
+        text-decoration: none;
+        color: #ffffff;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="header">
+      <nav>
+        <a th:href="@{/}">
+          <img th:src="@{/image/logo1.png}" alt="RNP" />
+        </a>
+        <div class="nav-links" id="nav-links">
+          <i class="fa fa-times" onclick="hideMenue()"></i>
+          <ul>
+            <li><a th:href="@{/}">HOME</a></li>
+            <li><a href="@{/signup}">Signup</a></li>
+            <li><a th:href="@{/login}">LOGIN</a></li>
+          </ul>
+        </div>
+        <i class="fa fa-bars" onclick="showMenue()"></i>
+      </nav>
+      <center>
+        <div class="container">
+          <div class="heading">RNP Login</div>
+          <form th:action="@{/login}" method="post" class="form">
+            <input
+              required=""
+              class="input"
+              type="email"
+              name="username"
+              id="email"
+              placeholder="Enter your E-mail"
+            />
+            <input
+              required=""
+              class="input"
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Enter your Password"
+            />
+            <span class="forgot-password"
+              ><a href="#">Forgot Password ?</a></span
+            >
+            <input class="login-button" type="submit" value="Sign In" />
+          </form>
+          <div class="social-account-container">
+            <span class="title"> you don't have account?</span>
+          </div>
+          <span class="agreement"><a th:href="@{/signup}">Sign up</a></span>
+        </div>
+      </center>
+    </section>
+
+    <script>
+      var links = document.getElementById("nav-links");
+      function showMenue() {
+        links.style.right = "0";
+      }
+      function hideMenue() {
+        links.style.right = "-200px";
+      }
+    </script>
+  </body>
+</html>
